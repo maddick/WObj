@@ -18,6 +18,7 @@
 	//create a global collection of window objects
 	var _WObjCollection = WObj.WObjCollection = WObj.prototype = {};
 
+	//a prototype for windows
 	WObj.wnd = WObj.prototype = {
 		height : 0,
 		width : 0,
@@ -49,6 +50,7 @@
 
 			var messageText;
 			var type = typeof WObjStruct;
+			var hasId = false;
 
 			//create a validation check
 			var validate = function( obj ){
@@ -82,6 +84,9 @@
 					for ( propsIndex in validProps) {
 						if ( validProps[propsIndex] === property ) {
 							validProp = true;
+							if ( validProps[propsIndex] === "id" ) {
+								hasId = true;
+							}
 							break;
 						}
 					}
@@ -92,15 +97,24 @@
 					}
 				}
 
-				//if the search is completed without error, return true
-				return true;
-			}
+				//if the search is completed without error and there is an Id
+				//then return true; otherwise return false.
+				if ( hasId ) {
+					return true;	
+				} else {
+					return false;
+				}
+			};
+
+			//create a parse to detect intended actions
+			var parse = function ( obj ) {
+
+			};
 
 			if ( type === "object" ) {
 
 				if ( validate( WObjStruct ) ) {
-					//determine the requested action
-
+					
 					messageText = "Congratulations! You have a valid WObjStruct!";
 				} else {
 					messageText = "Bad!";
