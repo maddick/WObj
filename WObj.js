@@ -68,8 +68,7 @@
 				//get an array of valid window properties
 				var validProps = ( function() {
 					var returnProps = [];
-                    var key;
-					for ( key in _wnd ) {
+					for ( var key in _wnd ) {
 						if ( typeof _wnd[key] != "function" && _wnd.hasOwnProperty( key ) ) {
 							returnProps.push( key );
 						}
@@ -79,8 +78,7 @@
 				})();
 
 				//loop through the object properties
-				var property;
-				for ( property in obj ) {
+				for ( var property in obj ) {
                     if ( obj.hasOwnProperty( property ) ) {
 
                         //loop through the validProps and if valid, move to the next property
