@@ -132,7 +132,7 @@
 				return false;
 			}
 
-			for ( wnd in _WObjCollection ) {
+			for ( var wnd in _WObjCollection ) {
 				if ( wnd.id ===  id ) {
 					return wnd;
 				}
