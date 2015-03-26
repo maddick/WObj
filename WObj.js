@@ -50,10 +50,12 @@
 
 			var messageText;
 			var type = typeof WObjStruct;
-			var hasId = false;
 
 			//create a validation check
 			var validate = function( obj ){
+
+                //initialize validation variables
+                var hasId = false;
 
 				if ( obj == null || obj == undefined ) {
 					return false;
@@ -99,11 +101,7 @@
 
 				//if the search is completed without error and there is an Id
 				//then return true; otherwise return false.
-				if ( hasId ) {
-					return true;	
-				} else {
-					return false;
-				}
+				return hasId;
 			};
 
 			//create a parse to detect intended actions
