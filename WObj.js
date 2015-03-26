@@ -137,6 +137,6 @@
 			}
 
 			return false;
-		};
+		}
 	};
 })(window);
