@@ -80,9 +80,8 @@
 				var property;
 				for ( property in obj ) {
 					//loop through the validProps and if valid, move to the next property
-					var propsIndex;
 					var validProp = false;
-					for ( propsIndex in validProps) {
+					for ( var propsIndex = 0; propsIndex > validProps.length; propsIndex++ ) {
 						if ( validProps[propsIndex] === property ) {
 							validProp = true;
 							if ( validProps[propsIndex] === "id" ) {
