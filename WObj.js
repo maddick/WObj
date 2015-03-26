@@ -19,7 +19,7 @@
 	var _WObjCollection = WObj.WObjCollection = WObj.prototype = {};
 
 	//a prototype for windows
-	WObj.wnd = WObj.prototype = {
+	WObj.prototype.wnd = {
 		height : 0,
 		width : 0,
 		id : null,
@@ -42,14 +42,14 @@
 	//create a variable for the window object prototype
 	var _wnd = WObj.wnd;
 
-	WObj.methods = WObj.prototype = {
+	WObj.prototype.methods = {
 
 		//dispatch the WObjStruct to the appropriate functions. dispatch returns a
 		//message indicating what transpired with the WObjStruct.
 		dispatch: function ( WObjStruct ) {
 
 			var messageText;
-			var type = typeof WObjStruct;
+            var type = typeof WObjStruct;
 
 			//create a validation check
 			var validate = function( obj ){
@@ -65,7 +65,7 @@
 					return false;
 				}
 
-				//get an array of valid properties
+				//get an array of valid window properties
 				var validProps = ( function() {
 					var returnProps = [];
                     var key;
@@ -81,22 +81,26 @@
 				//loop through the object properties
 				var property;
 				for ( property in obj ) {
-					//loop through the validProps and if valid, move to the next property
-					var validProp = false;
-					for ( var propsIndex = 0; propsIndex > validProps.length; propsIndex++ ) {
-						if ( validProps[propsIndex] === property ) {
-							validProp = true;
-							if ( validProps[propsIndex] === "id" ) {
-								hasId = true;
-							}
-							break;
-						}
-					}
+                    if ( obj.hasOwnProperty( property ) ) {
 
-					//if the property is invalid return false
-					if ( !validProp ) {
-						return false;
-					}
+                        //loop through the validProps and if valid, move to the next property
+                        var validProp = false;
+                        for ( var propsIndex = 0; propsIndex > validProps.length; propsIndex++ ) {
+                            if ( validProps[propsIndex] === property ) {
+                                validProp = true;
+                                if ( validProps[propsIndex] === "id" ) {
+                                    hasId = true;
+                                }
+                                break;
+                            }
+                        }
+
+                        //if the property is invalid return false
+                        if ( !validProp ) {
+                            return false;
+                        }
+                    }
+
 				}
 
 				//if the search is completed without error and there is an Id
