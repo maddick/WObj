@@ -66,8 +66,9 @@
 				//get an array of valid properties
 				var validProps = ( function() {
 					var returnProps = [];
+                    var key;
 					for ( key in _wnd ) {
-						if ( typeof _wnd[key] != "function" ) {
+						if ( typeof _wnd[key] != "function" && _wnd.hasOwnProperty( key ) ) {
 							returnProps.push( key );
 						}
 					}
